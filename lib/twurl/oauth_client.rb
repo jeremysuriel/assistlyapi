@@ -112,7 +112,7 @@ module Twurl
     end
 
     def fetch_verify_credentials
-      access_token.get('/1/account/verify_credentials.json')
+      access_token.get('/account/verify_credentials.json')
     end
 
     def authorized?
@@ -132,7 +132,7 @@ module Twurl
     def verify_has_username
       if username.nil? || username == ''
         oauth_response = fetch_verify_credentials
-        oauth_response.body =~ /"screen_name"\s*:\s*"(.*?)"/
+        oauth_response =~ /"name"\s*:\s*"(.*?)"/
         @username = $1
       end
     end
